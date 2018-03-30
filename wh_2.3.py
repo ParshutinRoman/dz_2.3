@@ -1,18 +1,15 @@
-
-
 import chardet
 import json
-from pprint import pprint
 from collections import Counter
-path = "/Users/admin/Desktop/netology/PY/dz_2.3"
-files = (('newsafr.txt', 'newsafr.json'), ('newscy.txt', 'newscy.json'), ('newsfr.txt', 'newsfr.json'),
-         ('newsit.txt', 'newsit.json'))
+
+files = ('newsafr.json', 'newscy.json', 'newsfr.json', 'newsit.json')
+
 
 for file in files:
-    with open(file[0], 'rb') as f:
+    with open(file, 'rb') as f:
         data = f.read()
         result = chardet.detect(data)
-    with open(file[1], encoding=result['encoding']) as data_file:
+    with open(file, encoding=result['encoding']) as data_file:
         data = json.load(data_file)
         text = data['rss']['channel']['items'][1]['description']
         words = text.split(' ')
